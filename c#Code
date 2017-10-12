@@ -1,0 +1,28 @@
+using UnityEngine;
+
+public class FollowPlayer : MonoBehaviour {   //c# file in unity most named the same as "FollowPlayer"
+
+	public Transform player;
+	public Vector3 offset;   //set camera position from the object Local-Position
+	public GameObject target;
+	public float speed;
+
+void Update () {
+
+		transform.position = player.position + offset; //to set camera position while following the targeted object
+		CamRotate ();
+    
+	}
+  
+  
+	void CamRotate(){
+		if(Input.GetKey(KeyCode.Keypad6))
+		transform.RotateAround (target.transform.position, Vector3.up, speed * Time.deltaTime);
+		if(Input.GetKey(KeyCode.Keypad4))
+			transform.RotateAround (target.transform.position, Vector3.down, speed * Time.deltaTime);
+		if(Input.GetKey(KeyCode.Keypad8))
+			transform.RotateAround (target.transform.position, Vector3.right, speed * Time.deltaTime);
+		if(Input.GetKey(KeyCode.Keypad2))
+			transform.RotateAround (target.transform.position, Vector3.left, speed * Time.deltaTime);
+		}
+}
